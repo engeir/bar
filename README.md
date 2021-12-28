@@ -3,7 +3,7 @@
 Bar is an  [Übersicht](https://github.com/felixhageloh/uebersicht) widget
 that places a customizable bar on your desktop.
 
-![Spotify](./screenshots/1.png)
+![Spotify](./screenshots/1.jpg)
 
 ## Elements
 
