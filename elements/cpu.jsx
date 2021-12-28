@@ -1,6 +1,6 @@
 import { element } from '../lib/style.js';
 
-const render = ({ config, output, error, side }) => {
+const render = ({ config, output, error, side, data }) => {
     var style = {
         ...element,
         ...config.style,
@@ -10,8 +10,8 @@ const render = ({ config, output, error, side }) => {
         <span style={style}>!</span>
     ) : (
         <span style={style}>
-        CPU
-        <i className="fa fa-chip"></i>
+        { data }
+        <i className="fa fa-microchip" style={{padding: '0 0 0 10px'}}></i>
         </span>
     )
 }

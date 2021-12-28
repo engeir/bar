@@ -1,6 +1,6 @@
 import { element } from '../lib/style.js';
 
-const render = ({ output, error, side, config, data }) => {
+const render = ({ output, error, side, config, data, charge }) => {
     var batColor = (level) => {
         var level = parseInt(level)
 
@@ -22,6 +22,14 @@ const render = ({ output, error, side, config, data }) => {
         }
     }
 
+    let charging = charge => {
+        let isCharging = false;
+        if (charge === "'AC Power'") {
+            isCharging = true;
+        }
+        return isCharging;
+    };
+
     var iconStyle = {
         padding: '0 0 0 10px',
         fontSize: '16px'
@@ -29,6 +37,8 @@ const render = ({ output, error, side, config, data }) => {
 
     var iconName = (level) => {
         var level = parseInt(level)
+        if (charging(charge))
+            return "charging-station"
         if (level > 80)
             return "battery-full"
         if (level > 60)
