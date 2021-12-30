@@ -68,7 +68,7 @@ BAT=$(pmset -g batt | egrep '([0-9]+\%).*' -o --colour=auto | cut -f1 -d';');
 CHARGE=$(pmset -g batt | egrep "'([^']+).*'" -o --colour=auto |cut -f1 -d';')
 SPACE=$(if command -v /usr/local/bin/yabai >/dev/null 2>&1; then echo $(/usr/local/bin/yabai -m query --spaces | /usr/local/bin/jq '.[] | select(.windows[0]) | .index' | sed 's/$/,/g' | tr -d '\n'); else echo ""; fi)
 ACTIVESPACE=$(if command -v /usr/local/bin/yabai >/dev/null 2>&1; then echo $(/usr/local/bin/yabai -m query --spaces | /usr/local/bin/jq '.[] | select(.focused==1) | .index'); else echo ""; fi)
-TITLE=$(if command -v /usr/local/bin/yabai >/dev/null 2>&1; then echo $(/usr/local/bin/yabai -m query --windows | /usr/local/bin/jq '.[] | select(.focused==1) | .title'| sed 's/"//g' | cut -c 1-85); else echo ""; fi)
+TITLE=$(if command -v /usr/local/bin/yabai >/dev/null 2>&1; then echo $(/usr/local/bin/yabai -m query --windows | /usr/local/bin/jq '.[] | select(.focused==1) | .title'| sed -e 's/^"//g' -e 's/"$//g' | cut -c 1-75); else echo ""; fi)
 CPU=$(ps -A -o %cpu | awk '{s+=$1} END {print s "%"}')
 DISK=$(df -H | grep '/dev/disk1s1' | awk '{ print $4 }')
 IP=$(curl -s checkip.dyndns.org|sed -e 's/.*Current IP Address: //' -e 's/<.*$//')
